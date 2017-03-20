@@ -15,7 +15,7 @@
 * [Variable](module/variable.md)
 * [训练模型](module/train.md)
 * [指定设备](module/device.md)
-* [可视化TensorBoard](module/tensorboard.md)
+* [TensorBoard可视化](module/tensorboard.md)
 
 ## 模型示例
 
