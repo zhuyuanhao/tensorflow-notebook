@@ -13,7 +13,9 @@
 * [Graph](module/graph.md)
 * [Session](module/session.md)
 * [Variable](module/variable.md)
-* [TensorBoard](module/tensorboard.md)
+* [训练模型](module/train.md)
+* [指定设备](module/device.md)
+* [可视化TensorBoard](module/tensorboard.md)
 
 ## 模型示例
 
