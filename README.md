@@ -1,4 +1,10 @@
-# My Awesome Book
+# TensorFlow概述
+
+
+# 版本1.0 接口兼容问题
+tf1.0版本将不兼容之前的tf0.n版本的接口，不兼容的部分参考文档：
+https://www.tensorflow.org/install/migration
+提供了转换脚本，但只可以将部分的不兼容接口替换掉，最后还是需要手动检查。
 
 1. Tensor
 

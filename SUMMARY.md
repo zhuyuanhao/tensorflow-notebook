@@ -1,12 +1,10 @@
 # Summary
 
-## 开始
+## 入门
 
 * [TensorFlow简介](README.md)
 * [参考资料](Reference.md)
-
-# 组件
-
+* [安装](Install.md)
 
 ## Example
 
