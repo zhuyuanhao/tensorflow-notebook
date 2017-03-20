@@ -69,7 +69,7 @@ $ mv cudnn-5.0/include/cudnn.h ../env/cuda-7.5/include/
 $ mv cudnn-5.0/lib64/libcudnn* ../env/cuda-7.5/lib64/
 ```
 5. 设置环境变量
-```shell
+```bash
 DL_HOME=/mnt/lustre/share/dlenv/tensorflow1.0/env
 export PATH=$DL_HOME/bin:$DL_HOME/cuda-7.5/bin:$DL_HOME/python-2.7/bin:$PATH
 export LD_LIBRARY_PATH=$DL_HOME/python-2.7/lib:$DL_HOME/cuda-7.5/lib64:$LD_LIBRARY_PATH
