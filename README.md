@@ -1,6 +1,5 @@
 # TensorFlow概述
 
-
 # 版本1.0 接口兼容问题
 tf1.0版本将不兼容之前的tf0.n版本的接口，不兼容的部分参考文档：
 https://www.tensorflow.org/install/migration

@@ -57,7 +57,8 @@ $ python setup.py install
 $ pip install wheel numpy
 ```
 4. 安装CUDA和CUDNN
-https://developer.nvidia.com/cuda-toolkit-archive
+
+  在 https://developer.nvidia.com/cuda-toolkit-archive
 下载特定版本CUDA
 根据合适参数安装CUDA
 ```
@@ -77,19 +78,23 @@ export LD_LIBRARY_PATH=$DL_HOME/python-2.7/lib:$DL_HOME/cuda-7.5/lib64:$LD_LIBRA
 export JAVA_HOME=/mnt/lustre/share/jdk1.8.0_91/
 export PATH=$JAVA_HOME/bin:$PATH
 ```
+一般添加到一个文件中，比如`env.source`。以后每次只要执行`source env.source`就能载入tensorflow环境了。
 6. 编译tensorflow
+```
 $ cd tensorflow
 $ ./configure          # 需要配置很多项，注意cudnn5.0的版本选项为5，不是5.0
 $ bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
 $ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-
+```
 7. 安装tensorflow
+```bash
 $ pip install /tmp/tensorflow_pkg/tensorflow-1.0.1-py2-none-any.whl
-
+```
 8. 验证安装
+```python
 $ python
 >>> import tensorflow as tf
 >>> hello = tf.constant('Hello, TensorFlow!')
 >>> sess = tf.Session()
 >>> print(sess.run(hello))
-
+```
