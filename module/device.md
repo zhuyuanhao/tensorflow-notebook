@@ -1,0 +1,1 @@
+如果机器上有超过一个可用的 GPU, 除第一个外的其它 GPU 默认是不参与计算的. 为了让 TensorFlow 使用这些 GPU, 你必须将 op 明确指派给它们执行. with tf.device("/gpu:1") 语句用来指派特定的 CPU 或 GPU 执行操作
