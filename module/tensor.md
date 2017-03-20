@@ -1,0 +1,1 @@
+Tensor代表最底层的数据结构，每一个Tensor可以简易的理解为一个多维数组，类似于Caffe中的Blob，不过与Blob不同的是，对于一张图片，Tensor的四个维度分别是`[batch, height, width, channel]`，而Blob的为`[batch, channel, height, width]`。

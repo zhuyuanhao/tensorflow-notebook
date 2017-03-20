@@ -8,9 +8,15 @@
 
 ## 组件分析
 
- * [TensorBoard](module/tensorboard.md)
-## Example
+* [Tensor](module/tensor.md)
+* [Operation](module/operation.md)
+* [Graph](module/graph.md)
+* [Session](module/session.md)
+* [Variable](module/variable.md)
+* [TensorBoard](module/tensorboard.md)
 
-* [basic\_linear\_regression](basic_linear_regression.md)
-* [basic\_mnist\_softmax](basic_mnist_softmax.md)
+## 模型示例
+
+* [linear\_regression](basic_linear_regression.md)
+* [mnist\_softmax](basic_mnist_softmax.md)
 
