@@ -5,15 +5,15 @@
 # 源码安装
 参考：https://www.tensorflow.org/install/install_sources
 
-1. 下载tf代码
+## 1. 下载tf代码
 ```
 $ git clone https://github.com/tensorflow/tensorflow
 $ cd tensorflow
 $ git checkout r1.0
 ```
-2. 安装bazel
-  
-  安装说明： https://bazel.build/versions/master/docs/install.html#compiling-from-source
+
+## 2. 安装bazel
+安装说明： https://bazel.build/versions/master/docs/install.html#compiling-from-source
 ```
 # 下载包 bazel-<VERSION>-dist.zip
 # https://github.com/bazelbuild/bazel/releases
@@ -23,7 +23,8 @@ $ cd bazel-0.4.4
 $ PATH=/mnt/lustre/share/jdk1.8.0_91/bin/:$PATH bash ./compile.sh
 $ cp output/bazel ../../env/bin/
 ```
-3. 安装python及依赖包
+
+## 3. 安装python及依赖包
 ```
 $ wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
 $ tar xzvf Python-2.7.x.tgz
@@ -56,9 +57,9 @@ $ python setup.py install
 ```
 $ pip install wheel numpy
 ```
-4. 安装CUDA和CUDNN
 
-  在 https://developer.nvidia.com/cuda-toolkit-archive
+## 4. 安装CUDA和CUDNN
+在 https://developer.nvidia.com/cuda-toolkit-archive
 下载特定版本CUDA
 根据合适参数安装CUDA
 ```
@@ -69,7 +70,8 @@ $ bash cuda_7.5.18_linux.run
 $ mv cudnn-5.0/include/cudnn.h ../env/cuda-7.5/include/
 $ mv cudnn-5.0/lib64/libcudnn* ../env/cuda-7.5/lib64/
 ```
-5. 设置环境变量
+
+## 5. 设置环境变量
 ```bash
 DL_HOME=/mnt/lustre/share/dlenv/tensorflow1.0/env
 export PATH=$DL_HOME/bin:$DL_HOME/cuda-7.5/bin:$DL_HOME/python-2.7/bin:$PATH
@@ -79,18 +81,21 @@ export JAVA_HOME=/mnt/lustre/share/jdk1.8.0_91/
 export PATH=$JAVA_HOME/bin:$PATH
 ```
 一般添加到一个文件中，比如`env.source`。以后每次只要执行`source env.source`就能载入tensorflow环境了。
-6. 编译tensorflow
+
+## 6. 编译tensorflow
 ```
 $ cd tensorflow
 $ ./configure          # 需要配置很多项，注意cudnn5.0的版本选项为5，不是5.0
 $ bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
 $ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 ```
-7. 安装tensorflow
+
+## 7. 安装tensorflow
 ```bash
 $ pip install /tmp/tensorflow_pkg/tensorflow-1.0.1-py2-none-any.whl
 ```
-8. 验证安装
+
+## 8. 验证安装
 ```python
 $ python
 >>> import tensorflow as tf
