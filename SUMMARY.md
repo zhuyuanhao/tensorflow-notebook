@@ -13,6 +13,7 @@
 * [Graph](module/graph.md)
 * [Session](module/session.md)
 * [Variable](module/variable.md)
+* [读数据](module/readdata.md)
 * [训练模型](module/train.md)
 * [指定设备](module/device.md)
 * [TensorBoard](module/tensorboard.md)

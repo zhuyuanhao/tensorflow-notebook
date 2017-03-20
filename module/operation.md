@@ -8,4 +8,6 @@
 1. Op
 
   Operation是最基本的执行单位，一个Op获得0个或多个Tensor，执行计算，产生0个或多个Tensor。
+  
+tf.constant
 
