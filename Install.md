@@ -1,6 +1,56 @@
 参考：https://www.tensorflow.org/install/
 
-使用包管理器安装的方式参考上面的文档，这里记录源码安装时的步骤。
+# 安装Nvidia驱动及CUDA、CuDNN
+默认的tf包需要CUDA8.0和CuDNN5.1
+Nvidia安装文档：http://docs.nvidia.com/cuda/cuda-installation-guide-linux/
+
+## 安装Nvidia驱动
+驱动不建议从run.sh文件安装，容易引起图形界面依赖问题，导致安装后无法登陆。
+```bash
+# 1. 清理老版本或者安装失败的驱动，这一步可以根据情况使用
+$ sudo apt-get autoremove --purge nvidia-*
+$ sudo reboot
+
+# 2. 在终端安装
+# 先log out，按Ctrl+Alt+F1进入文本模式（命令行界面），登录账户
+$ sudo service lightdm stop
+$ sudo apt-get update
+$ sudo apt-get install nvidia-current    # 或者nvidia-375
+$ sudo service lightdm start
+
+# 如果提示有进程在使用nvidia文件
+$ lsof /dev/nvidia*        # 检查哪个进程在使用，kill这些进程
+```
+
+## 安装CUDA及CuDNN
+在官网下载相应的CUDA8.0及CuDNN5.1包，直接运行安装。
+* CUDA8.0 默认安装在`/usr/local/cuda-8.0/`下，且软连接到`/usr/local/cuda/`
+* CuDNN5.1 解压后包含一个头文件和若干库文件，头文件拷贝到`/usr/local/cuda-8.0/include/`下，库文件拷贝到`/usr/local/cuda-8.0/lib64/`下
+
+添加环境变量
+```bash
+export CUDA_HOME=/usr/local/cuda
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+```
+
+# 安装包安装
+```
+# 可以安装cuda性能测试工具
+$ sudo apt-get install libcupti-dev
+
+# pip安装ensorflow
+$ pip install tensorflow      # Python 2.7; CPU support (no GPU support)
+$ pip3 install tensorflow     # Python 3.n; CPU support (no GPU support)
+$ pip install tensorflow-gpu  # Python 2.7; GPU support
+$ pip3 install tensorflow-gpu # Python 3.n; GPU support
+
+# 如果上面安装失败，可以手动指定
+$ sudo pip  install --upgrade TF_PYTHON_URL   # Python 2.7
+$ sudo pip3 install --upgrade TF_PYTHON_URL   # Python 3.N 
+# TF_PYTHON_URL在：
+# https://www.tensorflow.org/install/install_linux#TF_PYTHON_URL
+```
 
 # 源码安装
 参考：https://www.tensorflow.org/install/install_sources
