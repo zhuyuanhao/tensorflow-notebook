@@ -1,6 +1,6 @@
 ## 代码结构
 编译后的代码结构：
-```shell
+```
 README.md                // 文档
 RELEASE.md
 CONTRIBUTING.md
@@ -77,7 +77,7 @@ tensorflow/                  // tf代码
 ├── stream_executor/             // 代码：并行计算文件
 ├── tensorboard/                 // 代码：可视化工具tensorboard文件
 ├── tools/                       // 代码：各种工具，benchmark、ci等
-├── user_ops/                    // 代码：用于自定Op，包含Op示例
+├── user_ops/                    // 代码：自定Op示例
 ├── core/                        // 核心代码：tf的C++实现代码
 │   ├── BUILD                        // 编译：bazel
 │   ├── debug/                       // debug文件
