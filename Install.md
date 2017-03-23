@@ -4,7 +4,7 @@
 默认的tf包需要CUDA8.0和CuDNN5.1
 Nvidia安装文档：http://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
-## 安装Nvidia驱动
+## 1. 安装Nvidia驱动
 驱动不建议从run.sh文件安装，容易引起图形界面依赖问题，导致安装后无法登陆。
 ```bash
 # 1. 清理老版本或者安装失败的驱动，这一步可以根据情况使用
@@ -22,7 +22,7 @@ $ sudo service lightdm start
 $ lsof /dev/nvidia*        # 检查哪个进程在使用，kill这些进程
 ```
 
-## 安装CUDA及CuDNN
+## 2. 安装CUDA及CuDNN
 在官网下载相应的CUDA8.0及CuDNN5.1包，直接运行安装。
 * CUDA8.0 默认安装在`/usr/local/cuda-8.0/`下，且软连接到`/usr/local/cuda/`
 * CuDNN5.1 解压后包含一个头文件和若干库文件，头文件拷贝到`/usr/local/cuda-8.0/include/`下，库文件拷贝到`/usr/local/cuda-8.0/lib64/`下
