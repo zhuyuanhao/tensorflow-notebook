@@ -63,7 +63,7 @@ tensorflow/                  // tf代码
 ├── tf_version_script.lds
 ├── BUILD                        // 编译：bazel
 ├── tensorflow.bzl
-└── workspace.bzl
+├── workspace.bzl
 ├── examples/                    // 文档：示例模型
 ├── g3doc/                       // 文档：官网页面的源文件
 ├── cc/                          // 接口文件：C++
