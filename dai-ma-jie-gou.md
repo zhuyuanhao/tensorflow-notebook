@@ -1,6 +1,6 @@
 ## 代码结构
 编译后的代码结构：
-```
+```shell
 README.md                // 文档
 RELEASE.md
 CONTRIBUTING.md
@@ -57,7 +57,7 @@ third_party/             // 第三方库的bazel编译文件
 ├── swig.BUILD
 ├── sycl/
 └── zlib.BUILD
-tensorflow/                  // 核心代码
+tensorflow/                  // tf代码
 ├── __init__.py                  // python包文件
 ├── tf_exported_symbols.lds      // 编译：链接器文件
 ├── tf_version_script.lds
