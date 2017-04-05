@@ -10,18 +10,18 @@ Tensor的数据类型
 
 |Data type   |Python type |Description
 |:---        |:---        |:------
-|DT_FLOAT    |tf.float32  |32 bits floating point.
-|DT_DOUBLE   |tf.float64  |64 bits floating point.
-|DT_INT8 tf.i|nt8 8 bits s|igned integer.
-|DT_INT16    |tf.int16    |16 bits signed integer.
-|DT_INT32    |tf.int32    |32 bits signed integer.
-|DT_INT64    |tf.int64    |64 bits signed integer.
-|DT_UINT8    |tf.uint8    |8 bits unsigned integer.
-|DT_UINT16   |tf.uint16   |16 bits unsigned integer.
-|DT_STRING   |tf.string   |Variable length byte arrays. Each element of a Tensor is a byte array.
-|DT_BOOL tf.b|ool Boolean.|
-|DT_COMPLEX64|    tf.compl|ex64    Complex number made of two 32 bits floating points: real and imaginary parts.
-|DT_COMPLEX12|8   tf.compl|ex128   Complex number made of two 64 bits floating points: real and imaginary parts.
-|DT_QINT8    |tf.qint8    |8 bits signed integer used in quantized Ops.
-|DT_QINT32   |tf.qint32   |32 bits signed integer used in quantized Ops.
-|DT_QUINT8   |tf.quint8   |8 bits unsigned integer used in quantized Ops.
+|DT_FLOAT    |tf.float32  | 浮点数
+|DT_DOUBLE   |tf.float64  |
+|DT_INT8     |tf.int8     | 有符号整数
+|DT_INT16    |tf.int16    |
+|DT_INT32    |tf.int32    |
+|DT_INT64    |tf.int64    |
+|DT_UINT8    |tf.uint8    | 无符号整数
+|DT_UINT16   |tf.uint16   |
+|DT_STRING   |tf.string   | 每个元素是一个字节数组
+|DT_BOOL     |tf.bool     | 布尔类型
+|DT_COMPLEX64|tf.complex64| 复数（实部和虚部各32位）
+|DT_COMPLEX128|tf.complex128|
+|DT_QINT8    |tf.qint8    | quantized Ops（定点数）
+|DT_QINT32   |tf.qint32   |
+|DT_QUINT8   |tf.quint8   |
