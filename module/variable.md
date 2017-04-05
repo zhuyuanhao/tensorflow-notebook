@@ -51,9 +51,9 @@ w_twice = tf.Variable(W.initialized_value() * 2.0, name="w_twice")
 ## 变量共享
 TensorFlow使用Variable Scope机制提供在多处需要使用同一个Variable的方法。
 * `var = tf.get_variable(<name>, <shape>, <initializer>)`: 返回名称为name的变量，如果不存在则新建该变量并返回。注意共享变量使用initializer函数初始化Variable，tf.Variable()使用Tensor初始化Variable。
-* `tf.variable_scope(<scope_name>/variable_scope_object, reuse=False)`: 返回某个变量域，可以使用字符串或其他变量域对象，在不同的scope中可以使用同样的变量名调用`tf.get_variable()`函数，它们在计算图中的变量名会变为`scope/name`。
+* `tf.variable_scope(<scope_name>/variable_scope_object, reuse=None)`: 返回某个变量域，可以使用字符串或其他变量域对象，在不同的scope中可以使用同样的变量名调用`tf.get_variable()`函数，它们在计算图中的变量名会变为`scope/name`。
 * `tf.get_variable_scope()`获取当前`variable_scope`。
-* 要想获取共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意在使用共享变量的域内部的变量域也是使用共享变量。
+* 要想获取共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意默认情况下，子域将继承父域的reuse变量。
 
 ```python
 def conv_relu(input, kernel_shape, bias_shape):
@@ -80,7 +80,7 @@ with tf.variable_scope("image_filters") as scope:
     result2 = my_image_filter(image2)
 ```
 
-子变量域
+子变量域默认将包含父变量域名
 ```python
 with tf.variable_scope("foo") as foo_scope:
     assert foo_scope.name == "foo"
@@ -88,11 +88,19 @@ with tf.variable_scope("bar"):
     # 使用字符串时，在子变量域中的域名包含外层变量域
     with tf.variable_scope("baz") as other_scope:
         assert other_scope.name == "bar/baz"
-        # 使用变量域对象可以进入其他变量域而不受子域规则约束
+        # 使用变量域对象进入其他变量域不受子域规则约束
         with tf.variable_scope(foo_scope) as foo_scope2:
             assert foo_scope2.name == "foo"  # Other scope
 ```
 
+`tf.variable_scope()`将隐含的打开一个`tf.name_scope()`，所以在`variable_scope`中的所有Op都会包含name作为前缀。`variable_scope`和`name_scope`也可以嵌套使用，子域将包含父域的名称。注意使用变量域对象进入其他变量域不受子域规则约束。
+
+variable_scope可以包含一个默认的initializer函数，供当前域及子域的所有get_variable函数做初始化使用。
+```
+with tf.variable_scope("foo", initializer=tf.constant_initializer(0.4)):
+    v = tf.get_variable("v", [1])
+    ...
+```
 ## 变量的存储
 使用`tf.train.Saver`可以为计算图的所有Variable或指定的部分Variable增加ave和restore操作。并且`tf.train.Saver`类提供了保存和读取并恢复Variable的方法。
 
