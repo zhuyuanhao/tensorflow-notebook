@@ -11,6 +11,9 @@
 
 * [Tensor](module/tensor.md)
 * [Operation](module/operation.md)
+  * [常量Op](module/operation/chang-liang-op.md)
+  * 数学Op
+  * 神经网络Op
 * [Graph](module/graph.md)
 * [Session](module/session.md)
 * [Variable](module/variable.md)
