@@ -3,4 +3,159 @@ Operation是最基本的执行单位，Op也被称为node。一个Op读取0个�
 ## 参考资料
 * API：https://www.tensorflow.org/api_docs/python/tf/Operation
 
+**常量Op**
+参考：https://www.tensorflow.org/api_guides/python/constant_op
+* 常数值：`tf.zeros, tf.zeros_like, tf.ones, tf.ones_like, tf.fill, tf.constant`
+* 序列：`tf.linspace, tf.range`
+* 随机数：`tf.random_normal, tf.truncated_normal, tf.random_uniform, tf.random_shuffle, tf.random_crop, tf.multinomial, tf.random_gamma, tf.set_random_seed`
+
+**数学Op**
+参考：https://www.tensorflow.org/api_guides/python/math_ops
+* 算术操作
+```
+tf.add
+tf.subtract
+tf.multiply
+tf.scalar_mul
+tf.div
+tf.divide
+tf.truediv
+tf.floordiv
+tf.realdiv
+tf.truncatediv
+tf.floor_div
+tf.truncatemod
+tf.floormod
+tf.mod
+tf.cross
+```
+* 基础函数
+```
+tf.add_n
+tf.abs
+tf.negative
+tf.sign
+tf.reciprocal
+tf.square
+tf.round
+tf.sqrt
+tf.rsqrt
+tf.pow
+tf.exp
+tf.expm1
+tf.log
+tf.log1p
+tf.ceil
+tf.floor
+tf.maximum
+tf.minimum
+tf.cos
+tf.sin
+tf.lbeta
+tf.tan
+tf.acos
+tf.asin
+tf.atan
+tf.lgamma
+tf.digamma
+tf.erf
+tf.erfc
+tf.squared_difference
+tf.igamma
+tf.igammac
+tf.zeta
+tf.polygamma
+tf.betainc
+tf.rint
+```
+* 矩阵函数
+```
+tf.diag
+tf.diag_part
+tf.trace
+tf.transpose
+tf.eye
+tf.matrix_diag
+tf.matrix_diag_part
+tf.matrix_band_part
+tf.matrix_set_diag
+tf.matrix_transpose
+tf.matmul
+tf.norm
+tf.matrix_determinant
+tf.matrix_inverse
+tf.cholesky
+tf.cholesky_solve
+tf.matrix_solve
+tf.matrix_triangular_solve
+tf.matrix_solve_ls
+tf.qr
+tf.self_adjoint_eig
+tf.self_adjoint_eigvals
+tf.svd
+```
+* Tensor数学函数
+```
+tf.tensordot
+```
+* 复数函数
+```
+tf.complex
+tf.conj
+tf.imag
+tf.real
+```
+* 傅立叶变换函数
+```
+tf.fft
+tf.ifft
+tf.fft2d
+tf.ifft2d
+tf.fft3d
+tf.ifft3d
+```
+* 归约函数
+```
+tf.reduce_sum
+tf.reduce_prod
+tf.reduce_min
+tf.reduce_max
+tf.reduce_mean
+tf.reduce_all
+tf.reduce_any
+tf.reduce_logsumexp
+tf.count_nonzero
+tf.accumulate_n
+tf.einsum
+```
+* Scan函数
+```
+tf.cumsum
+tf.cumprod
+```
+* 分割计算函数
+```
+tf.segment_sum
+tf.segment_prod
+tf.segment_min
+tf.segment_max
+tf.segment_mean
+tf.unsorted_segment_sum
+tf.sparse_segment_sum
+tf.sparse_segment_mean
+tf.sparse_segment_sqrt_n
+```
+* 序列比较和索引函数
+```
+tf.argmin
+tf.argmax
+tf.setdiff1d
+tf.where
+tf.unique
+tf.edit_distance
+tf.invert_permutation
+```
+
+
+
 
