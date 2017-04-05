@@ -3,12 +3,6 @@ Operation是最基本的执行单位，Op也被称为node。一个Op读取0个�
 ## 参考资料
 * API：https://www.tensorflow.org/api_docs/python/tf/Operation
 
-**常量Op**
-
-
-**数学Op**
-
-
 
 
 
