@@ -36,7 +36,7 @@ tf.get_collection_ref
 * `MOVING_AVERAGE_VARIABLES`: 包含moving average值的Variable集合。使用`tf.train.ExponentialMovingAverage`的`apply()`方法可以将变量添加到这个集合。使用`tf.moving_average_variables()`获取。
 * `SUMMARIES`: summary的Tensor集合。用于`tf.summary.merge_all(key=tf.GraphKeys.SUMMARIES)`。
 * `QUEUE_RUNNERS`: QueueRunner对象的集合。使用`tf.train.add_queue_runner()`将默认添加QueueRunner到这个集合。用于`tf.train.start_queue_runners()`的默认集合。
-* `REGULARIZATION_LOSSES`: 
-* `WEIGHTS`: 
-* `BIASES`: 
-* `ACTIVATIONS`: 
+* `REGULARIZATION_LOSSES`: 默认的regularization losses
+* `WEIGHTS`: 默认的weights
+* `BIASES`: 默认的biases
+* `ACTIVATIONS`: 默认的activations
