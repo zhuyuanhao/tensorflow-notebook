@@ -28,13 +28,13 @@ with tf.device('/cpu:0'):
     ...
 ```
 
-`tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，name_scope可以嵌套。
+* `tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，name_scope可以嵌套。
 ```python
 with tf.name_scope("nested") as scope:
     ...
 ```
 
-`tf.container(container_name)`创建一个用于保存带状态操作（Variable, Queue）的resource container并返回一个上下文管理器，环境中带状态的操作都会包含在这个container中
+* `tf.container(container_name)`创建一个用于保存带状态操作（Variable, Queue）的resource container并返回一个上下文管理器，环境中带状态的操作都会包含在这个container中
 ```python
 with g.container('experiment0'):
   v1 = tf.Variable([1.0])
