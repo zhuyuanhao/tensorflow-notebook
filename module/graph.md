@@ -30,35 +30,29 @@ with tf.device('/cpu:0'):
 
 * `tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
 ```python
-with tf.Graph().as_default() as g:
-  c = tf.constant(5.0, name="c")
-  assert c.op.name == "c"
-  c_1 = tf.constant(6.0, name="c")
-  assert c_1.op.name == "c_1"
+  with tf.Graph().as_default() as g:
+    c = tf.constant(5.0, name="c")
+    assert c.op.name == "c"
+    c_1 = tf.constant(6.0, name="c")
+    assert c_1.op.name == "c_1"
   
-  with g.name_scope("inner"):
-    nested_inner_c = tf.constant(20.0, name="c")
-    assert nested_inner_c.op.name == "nested/inner/c"
-
-  with g.name_scope("inner"):
-    nested_inner_1_c = tf.constant(30.0, name="c")
-    assert nested_inner_1_c.op.name == "nested/inner_1/c"
+    with g.name_scope("inner"):
+      nested_inner_c = tf.constant(20.0, name="c")
+      assert nested_inner_c.op.name == "nested/inner/c"
+    with g.name_scope("inner"):
+      nested_inner_1_c = tf.constant(30.0, name="c")
+      assert nested_inner_1_c.op.name == "nested/inner_1/c"
     
-  with g.name_scope("nested") as scope:
-    nested_c = tf.constant(10.0, name="c")
-    assert nested_c.op.name == "nested/c"
+    with g.name_scope("nested") as scope:
+      nested_c = tf.constant(10.0, name="c")
+      assert nested_c.op.name == "nested/c"
+    with g.name_scope(scope):
+      nested_d = tf.constant(40.0, name="d")
+      assert nested_d.op.name == "nested/d"
 
-
-
-      # Treats `scope` as an absolute name scope, and
-      # switches to the "nested/" scope.
-      with g.name_scope(scope):
-        nested_d = tf.constant(40.0, name="d")
-        assert nested_d.op.name == "nested/d"
-
-        with g.name_scope(""):
-          e = tf.constant(50.0, name="e")
-          assert e.op.name == "e"
+    with g.name_scope(""):
+      e = tf.constant(50.0, name="e")
+      assert e.op.name == "e"
 ```
 
 * `tf.container(container_name)`创建一个用于保存带状态操作（Variable, Queue）的resource container并返回一个上下文管理器，环境中带状态的操作都会包含在这个container中。container可以使用`tf.Session.reset()`释放，其中所有操作都将置为未初始化状态。
