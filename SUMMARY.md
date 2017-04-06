@@ -13,6 +13,7 @@
 * [Operation](module/operation.md)
   * [常量Op](module/operation/chang-liang-op.md)
   * [数学Op](module/operation/shu-xue-op.md)
+  * [张量转换Op](module/operation/zhang-liang-zhuan-huan-op.md)
   * [神经网络Op](module/operation/shen-jing-wang-luo-op.md)
 * [Graph](module/graph.md)
 * [Session](module/session.md)
