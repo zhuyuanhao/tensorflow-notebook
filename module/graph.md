@@ -8,7 +8,7 @@ Graph表示一个完整的计算任务，包括由Op组成的操作集合和由T
     * https://www.tensorflow.org/api_docs/python/tf/GraphKeys
 * 相关操作：https://www.tensorflow.org/api_guides/python/framework
 
-**默认图**
+## 默认图
 系统环境中有一个默认图 (default graph)，如果op没有指定图，则会被自动添加到默认图。
 获取默认图：`tf.get_default_graph()`
 重设环境中的默认图：
@@ -18,13 +18,27 @@ with g.as_default():
     ...
 ```
 
-**图Op集合（collections）**
+## 定义图
+`tf[.Graph].device(device_name_or_function)`定义运行图所使用的设备，并返回一个上下文管理器
+```
+with tf.device('/gpu:0'): 
+    ...
+with tf.device('/cpu:0'): 
+    ...
+```
+`tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，name_scope可以嵌套。
+```
+with tf.name_scope("nested") as scope:
+    ...
+```
+
+## 图的元素集合（collections）
 图可以包含任意多个Op集合（collections），每个集合包含相关的操作。集合名称可以自定义，一些预定义的集合名称包含在`tf.GraphKeys`类中，系统中其他操作会使用图中预定义的集合完成，比如`tf.Optimizer`操作默认优化`tf.GraphKeys.TRAINABLE_VARIABLES`中的`Variables`。
 相关操作：
 ```python
 # 使用默认图
-tf.add_to_collection(name, value)
-tf.get_collection(name, scope=None)
+tf[.Graph].add_to_collection(name, value)
+tf[.Graph].get_collection(name, scope=None)
 ```
 
 预定义Op集合：
@@ -39,3 +53,12 @@ tf.get_collection(name, scope=None)
 * `WEIGHTS`: 默认的weights
 * `BIASES`: 默认的biases
 * `ACTIVATIONS`: 默认的activations
+
+## 依赖控制
+使用`tf[.Graph].control_dependencies(control_inputs)`定义一个控制依赖，并返回一个上下文管理器
+```
+with g.control_dependencies([a, b, c]):
+    # d,e 将在a,b,c 执行完之后运行
+    d = …
+    e = …
+```
