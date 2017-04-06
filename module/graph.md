@@ -31,11 +31,13 @@ with tf.device('/cpu:0'):
 * `tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
 ```python
   with tf.Graph().as_default() as g:
+    # tf会自动重命名op
     c = tf.constant(5.0, name="c")
     assert c.op.name == "c"
     c_1 = tf.constant(6.0, name="c")
     assert c_1.op.name == "c_1"
   
+    # 使用字符串的重复name_scope会被自动重命名
     with g.name_scope("inner"):
       nested_inner_c = tf.constant(20.0, name="c")
       assert nested_inner_c.op.name == "nested/inner/c"
@@ -43,6 +45,7 @@ with tf.device('/cpu:0'):
       nested_inner_1_c = tf.constant(30.0, name="c")
       assert nested_inner_1_c.op.name == "nested/inner_1/c"
     
+    # 使用其他name_scope的可以重入
     with g.name_scope("nested") as scope:
       nested_c = tf.constant(10.0, name="c")
       assert nested_c.op.name == "nested/c"
@@ -50,6 +53,7 @@ with tf.device('/cpu:0'):
       nested_d = tf.constant(40.0, name="d")
       assert nested_d.op.name == "nested/d"
 
+    # 空字符串会重置为顶层默认name_scope
     with g.name_scope(""):
       e = tf.constant(50.0, name="e")
       assert e.op.name == "e"
