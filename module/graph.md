@@ -29,8 +29,8 @@ tf.get_collection_ref
 ```
 
 预定义Op集合：
-* `tf.GraphKeys.GLOBAL_VARIABLES`: 所有Variable的集合，在分布式环境中包含所有Variable。`tf.Variable()`和`tf.get_variable()`会将变量添加到这个集合中。使用`tf.global_variables()`可以获得。
-* `LOCAL_VARIABLES`: 
+* `GLOBAL_VARIABLES`: 所有Variable的集合，在分布式环境中包含所有Variable。`tf.Variable()`和`tf.get_variable()`会将变量添加到这个集合中。可以使用`tf.global_variables()`获得。
+* `LOCAL_VARIABLES`: 进程内部Variable集合，常用于临时变量，一般不保存在Checkpoint文件中。使用`tf.contrib.framework.local_variable()`会添加变量到这个集合。可以使用`tf.local_variables()`获得。
 * `MODEL_VARIABLES`: 
 * `TRAINABLE_VARIABLES`: 
 * `SUMMARIES`: 
