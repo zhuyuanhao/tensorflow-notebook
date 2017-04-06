@@ -23,9 +23,8 @@ with g.as_default():
 相关操作：
 ```python
 # 使用默认图
-tf.add_to_collection
-tf.get_collection
-tf.get_collection_ref
+tf.add_to_collection(name, value)
+tf.get_collection(name, scope=None)
 ```
 
 预定义Op集合：
