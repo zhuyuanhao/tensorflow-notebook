@@ -5,6 +5,7 @@ TF-Slim(`tensorflow.contrib.slim`)是TensorFlow中的一个轻量级库，用来
 * Slim模型仓库：https://github.com/tensorflow/models/tree/master/slim
 
 ## 组件
+在slim的[`__init__.py`](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/slim/__init__.py)文件可以看到所有的组件
 * `arg_scope`: 新增的域定义，带有更丰富的默认参数
 * `data`: 读数据模块，包含数据工具data providers, parallel_reader, decoding
 * `queues`: 用于控制QueueRunner的上下文管理器
