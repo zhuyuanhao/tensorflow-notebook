@@ -19,7 +19,21 @@ with g.as_default():
 ```
 
 ## 名称空间(name scope)
-`tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
+一个Graph中包含一系列的名称空间(name scope)，这些名称空间可以通过它们的名字形成嵌套关系。
+
+使用`tf[.Graph].name_scope(name/scope)`会返回一个上下文管理器。同时：
+
+1. 如果传入一个其他name scope的上下文，则会返回其他name scope的上下文管理器
+2. 如果传入None或空字符串，则返回顶层scope（空scope）的上下文管理器
+3. 如果传入一个不以`/`结尾的字符串，则新建一个name scope，并添加到当前的Graph中。新建的name scope会以它所在的环境中的scope的名字作为前缀
+
+名称空间的作用：
+1. 名称空间会影响在此上下文中定义的Variable, Operation, Tensor。
+  ```python
+  
+```
+
+为图中节点创建层次化的名称，，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
 ```python
   with tf.Graph().as_default() as g:
     # tf会自动重命名op
