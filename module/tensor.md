@@ -20,7 +20,7 @@ result = sess.run(e)
 ```
 
 ## 属性
-* **name**：名称
+* **name**：名称。默认的name是产生该Tensor的Op的name加上该Tensor的序号（从0开始），如：`conv1/split:1`
 * **dtype**：Dtype类型
 * **shape**：一个[tf.TensorShape](https://www.tensorflow.org/api_docs/python/tf/TensorShape)对象，保存Tensor的大小。也可以使用`python list/tuple`表示
 * **device**：所在设备名称
