@@ -16,7 +16,6 @@
   * [张量转换Op](module/operation/zhang-liang-zhuan-huan-op.md)
   * [神经网络Op](module/operation/shen-jing-wang-luo-op.md)
 * [Variable](module/variable.md)
-* [Scope](module/scope.md)
 * [Graph](module/graph.md)
 * [Session](module/session.md)
 * [读数据](module/readdata.md)
