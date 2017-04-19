@@ -25,7 +25,7 @@ with g.as_default():
 
 1. 传入一个其他name scope的上下文，则会返回该scope的上下文管理器
 2. 传入None或空字符串，则返回顶层scope（空scope）的上下文管理器
-3. 传入一个不以`/`结尾的字符串，则新建一个name scope，并添加到当前的Graph中。新name scope的名字会已它所在的上下文环境中的scope的名字做前缀，组成嵌套关系。如果这个嵌套后的name已存在，则TF会自动调用`self.unique_name(name)`产生一个新的name，一般是在原name字符串后添加数字序号。
+3. 传入一个不以`/`结尾的字符串，则新建一个name scope，并添加到当前的Graph中。新name scope的名字会已它所在的上下文环境中的scope的名字做前缀，组成嵌套关系。如果这个嵌套后的name已存在，则TF会自动调用`self.unique_name(name)`产生一个新的name，一般是在原name字符串后添加下划线和数字序号，如`"conv_1"`。
 4. 传入以`/`结尾的字符串，则返回该name所指的name scope，此时该name scope的名称不与它上下文的scope嵌套。如果该name scope不存在，则新建这个scope并添加到Graph。
 
 名称空间的使用：
@@ -41,36 +41,6 @@ with g.as_default():
   print(var1.name)       # var1:0
   print(var2.name)       # conv/var2:0
   ```
-
-```python
-  with tf.Graph().as_default() as g:
-    # tf会自动重命名op
-    c = tf.constant(5.0, name="c")
-    assert c.op.name == "c"
-    c_1 = tf.constant(6.0, name="c")
-    assert c_1.op.name == "c_1"
-  
-    # 使用字符串的重复name_scope会被自动重命名
-    with g.name_scope("inner"):
-      nested_inner_c = tf.constant(20.0, name="c")
-      assert nested_inner_c.op.name == "nested/inner/c"
-    with g.name_scope("inner"):
-      nested_inner_1_c = tf.constant(30.0, name="c")
-      assert nested_inner_1_c.op.name == "nested/inner_1/c"
-    
-    # 使用其他name_scope的可以重入
-    with g.name_scope("nested") as scope:
-      nested_c = tf.constant(10.0, name="c")
-      assert nested_c.op.name == "nested/c"
-    with g.name_scope(scope):
-      nested_d = tf.constant(40.0, name="d")
-      assert nested_d.op.name == "nested/d"
-
-    # 空字符串会重置为顶层默认name_scope
-    with g.name_scope(""):
-      e = tf.constant(50.0, name="e")
-      assert e.op.name == "e"
-```
 
 ## 定义图
 
