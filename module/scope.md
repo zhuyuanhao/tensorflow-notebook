@@ -1,0 +1,1 @@
+TF中的Op和Variable（Graph中的节点）都有成员name。name主要用来分组不同的Op或Varible。
