@@ -18,17 +18,8 @@ with g.as_default():
     ...
 ```
 
-## 定义图
-
-* `tf[.Graph].device(device_name_or_function)`定义运行图所使用的设备，并返回一个上下文管理器
-```python
-with tf.device('/gpu:0'): 
-    ...
-with tf.device('/cpu:0'): 
-    ...
-```
-
-* `tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
+## 名称空间(name scope)
+`tf[.Graph].name_scope(name)`为图中节点创建层次化的名称，并返回一个上下文管理器，`name_scope`可以嵌套。如果同一嵌套级别包含两个字符串名相同的scope，则它们会被定义为不同名称。只有使用`scope_object`才能进入一个已经存在的scope
 ```python
   with tf.Graph().as_default() as g:
     # tf会自动重命名op
@@ -59,6 +50,15 @@ with tf.device('/cpu:0'):
       assert e.op.name == "e"
 ```
 
+## 定义图
+
+* `tf[.Graph].device(device_name_or_function)`定义运行图所使用的设备，并返回一个上下文管理器
+```python
+with tf.device('/gpu:0'): 
+    ...
+with tf.device('/cpu:0'): 
+    ...
+```
 * `tf.container(container_name)`创建一个用于保存带状态操作（Variable, Queue）的resource container并返回一个上下文管理器，环境中带状态的操作都会包含在这个container中。container可以使用`tf.Session.reset()`释放，其中所有操作都将置为未初始化状态。
 ```python
 with g.container('experiment0'):
