@@ -30,9 +30,16 @@ with g.as_default():
 
 名称空间的使用：
 
-1. 名称空间会影响在此上下文中定义的Variable, Operation, Tensor。
+1. 名称空间会影响在此上下文中定义的Variable, Operation, Tensor的name成员，但不会影响`tf.get_variable()`定义的Variable。
   ```python
-  
+  with tf.name_scope("conv"):
+      var1 = tf.get_variable(name='var1', ...)
+      var2 = tf.Variable(name='var2', ...)
+      sum1 = tf.add(var1, var2, name='add')
+  print(sum1.op.name)    # conv/add
+  print(sum1.name)       # conv/add:0
+  print(var1.name)       # var1:0
+  print(var2.name)       # conv/var2:0
   ```
 
 ```python
