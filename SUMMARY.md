@@ -22,7 +22,7 @@
 * [训练模型](module/train.md)
 * [指定设备](module/device.md)
 * [TensorBoard](module/tensorboard.md)
-* [Slim](module/slim.md)
+* [TF-Slim](module/slim.md)
 
 ## 模型示例
 
