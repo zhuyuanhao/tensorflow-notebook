@@ -23,6 +23,7 @@
 * [指定设备](module/device.md)
 * [TensorBoard](module/tensorboard.md)
 * [TF-Slim](module/slim.md)
+  * [variables](module/slim/variables.md)
 
 ## 模型示例
 

@@ -78,7 +78,7 @@ tf[.Graph].get_collection(name, scope=None)
 预定义Op集合：
 * `GLOBAL_VARIABLES`: 所有Variable的集合，在分布式环境中也能共享。`tf.Variable()`和`tf.get_variable()`会将变量添加到这个集合中。可以使用`tf.global_variables()`获取。
 * `LOCAL_VARIABLES`: 进程内部Variable集合，常用于临时变量，一般不保存在Checkpoint文件中。可以使用`tf.contrib.framework.local_variable()`添加。使用`tf.local_variables()`获取。
-* `MODEL_VARIABLES`: model forward 时的Variable集合。可以使用`tf.contrib.framework.model_variable()`添加。
+* `MODEL_VARIABLES`: 属于模型本身的变量集合，Forward, load/save model 时会用到。可以使用`tf.contrib.framework.model_variable()`添加。
 * `TRAINABLE_VARIABLES`: optimizer时使用的Variable集合。新建变量时包含`trainable=True`参数的都添加到这个集合。可以使用`tf.trainable_variables()`获取。
 * `MOVING_AVERAGE_VARIABLES`: 包含moving average值的Variable集合。使用`tf.train.ExponentialMovingAverage`的`apply()`方法可以将变量添加到这个集合。使用`tf.moving_average_variables()`获取。
 * `SUMMARIES`: summary的Tensor集合。用于`tf.summary.merge_all(key=tf.GraphKeys.SUMMARIES)`。
