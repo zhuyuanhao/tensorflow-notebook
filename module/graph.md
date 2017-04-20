@@ -41,7 +41,7 @@ with g.as_default():
   print(var1.name)       # var1:0
   print(var2.name)       # conv/var2:0
   ```
-2. TF中如果Variable, Tensor, Operation的定义名称相同（Op命名规则不包含序号，Var和Tensor包含序号），则会自动重命名，以保证不同对象有不同的name。
+2. TF中如果Variable, Tensor, Operation的定义名称相同（Op命名规则不包含序号，Var和Tensor包含序号），则会自动重命名，以保证不同对象有不同的name。如果没有指定name域，`tf.Variable()`会自动命名为`"Variable"`，`tf.Add()`会自动命名为`"Add"`，Tensor会跟随产生他的Operation的名字命名。
   ```python
   with tf.name_scope("conv"):
     var1 = tf.get_variable(name='obj', ...)
