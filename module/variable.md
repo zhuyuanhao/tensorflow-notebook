@@ -49,11 +49,14 @@ w_twice = tf.Variable(W.initialized_value() * 2.0, name="w_twice")
 ```
 
 ## 变量共享
-TensorFlow使用Variable Scope机制提供在多处需要使用同一个Variable的方法。
-* `var = tf.get_variable(<name>, <shape>, <initializer>)`: 返回名称为name的变量，如果不存在则新建该变量并返回。注意共享变量使用initializer函数初始化Variable，tf.Variable()使用Tensor初始化Variable。
+使用 `tf.Variable()` 定义的时候, 即使name一样, 但TF会自动保存为不同的变量名，并且`tf.Variable()` 定义的变量名受name scope的影响。
+
+TensorFlow使用`variable_scope`机制提供在多处需要使用同一个Variable的方法。`tf.variable_scope()`将隐含的打开一个`tf.name_scope()`，所以在`variable_scope`中的所有Op（包括`name_scope`不能影响的`tf.get_variable()`）都会包含name作为前缀。
+
+* `var = tf.get_variable(<name>, <shape>, <initializer>)`: 返回名称为name的变量，如果不存在则新建该变量并返回。在这里，相同的变量名并不会像tf.Variable()一样被自动重命名，而是会返回之前定义的变量。注意共享变量使用initializer函数初始化Variable，tf.Variable()使用Tensor初始化Variable。
 * `tf.variable_scope(<scope_name>/variable_scope_object, reuse=None)`: 返回某个变量域，可以使用字符串或其他变量域对象，在不同的scope中可以使用同样的变量名调用`tf.get_variable()`函数，它们在计算图中的变量名会变为`scope/name`。
 * `tf.get_variable_scope()`获取当前`variable_scope`。
-* 要想获取共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意默认情况下，子域将继承父域的reuse变量。
+* 要想使用共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意默认情况下，子域将继承父域的reuse变量。
 
 ```python
 def conv_relu(input, kernel_shape, bias_shape):
@@ -93,7 +96,7 @@ with tf.variable_scope("bar"):
             assert foo_scope2.name == "foo"  # Other scope
 ```
 
-`tf.variable_scope()`将隐含的打开一个`tf.name_scope()`，所以在`variable_scope`中的所有Op都会包含name作为前缀。`variable_scope`和`name_scope`也可以嵌套使用，子域将包含父域的名称。注意使用变量域对象进入其他变量域不受子域规则约束。
+`variable_scope`和`name_scope`也可以嵌套使用，子域将包含父域的名称。
 
 variable_scope可以包含一个默认的initializer函数，供当前域及子域的所有get_variable函数做初始化使用。
 ```
