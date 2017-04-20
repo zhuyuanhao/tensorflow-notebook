@@ -23,7 +23,7 @@ with g.as_default():
 
 使用`tf[.Graph].name_scope(name/scope)`会返回一个上下文管理器。根据参数不同，将返回不同的上下文：
 
-1. 传入一个其他name scope的上下文，则会返回该scope的上下文管理器
+1. 传入一个其他name scope的字符串对象，`with tf.name_scope("conv") as scope:`的scope，则会返回该scope的上下文管理器
 2. 传入None或空字符串，则返回顶层scope（空scope）的上下文管理器
 3. 传入一个不以`/`结尾的字符串，则新建一个name scope，并添加到当前的Graph中。新name scope的名字会已它所在的上下文环境中的scope的名字做前缀，组成嵌套关系。如果这个嵌套后的name已存在，则TF会自动调用`self.unique_name(name)`产生一个新的name，一般是在原name字符串后添加下划线和数字序号，如`"conv_1"`。
 4. 传入以`/`结尾的字符串，则返回该name所指的name scope，此时该name scope的名称不与它上下文的scope嵌套。如果该name scope不存在，则新建这个scope并添加到Graph。
@@ -56,6 +56,7 @@ with g.as_default():
   print(var3.name)       # conv/obj_1:0
   print(var4.name)       # conv/obj_2:0
   ```
+3. `tf.name_scope()`会产生一个上下文管理器对象，但`with tf.name_scope("conv") as scope:`的scope是一个值为`"conv/"`的字符串对象。
 
 ## 定义图
 
