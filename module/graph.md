@@ -33,13 +33,28 @@ with g.as_default():
 1. 名称空间会影响在此上下文中定义的Variable, Operation, Tensor的name成员，但不会影响`tf.get_variable()`定义的Variable。
   ```python
   with tf.name_scope("conv"):
-      var1 = tf.get_variable(name='var1', ...)
-      var2 = tf.Variable(name='var2', ...)
-      sum1 = tf.add(var1, var2, name='add')
+    var1 = tf.get_variable(name='var1', ...)
+    var2 = tf.Variable(name='var2', ...)
+    sum1 = tf.add(var1, var2, name='add')
   print(sum1.op.name)    # conv/add
   print(sum1.name)       # conv/add:0
   print(var1.name)       # var1:0
   print(var2.name)       # conv/var2:0
+  ```
+2. TF中如果Variable, Tensor, Operation的定义名称相同（Op命名规则不包含序号，Var和Tensor包含序号），则会自动重命名，以保证不同对象有不同的name。
+  ```python
+  with tf.name_scope("conv"):
+    var1 = tf.get_variable(name='obj', ...)
+    var2 = tf.Variable(name='obj', ...)
+    var3 = tf.Variable(name='obj', ...)
+    var4 = tf.Variable(name='obj', ...)
+    sum1 = tf.add(var1, var2, name='obj')
+  print(sum1.op.name)    # conv/obj_3
+  print(sum1.name)       # conv/obj_3:0
+  print(var1.name)       # obj:0
+  print(var2.name)       # conv/obj:0
+  print(var3.name)       # conv/obj_1:0
+  print(var4.name)       # conv/obj_2:0
   ```
 
 ## 定义图
