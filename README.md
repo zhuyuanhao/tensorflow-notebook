@@ -14,6 +14,9 @@ TensorFlow没有采用在Python外部独立运行某个耗时操作的方式，�
 
 TF提供底层的TensorFlow Core API实现所有的功能，推荐给熟悉深度学习的用户使用，同时提供更高级抽象的API供普通用户使用，比如`tf.contrib.learn`。其中`contrib`表示该API还在开发中。
 
+# 整体架构
+![](/assets/tensorflow_architecture.png)
+
 # 版本1.0 接口兼容问题
 tf1.0版本将不兼容之前的tf0.n版本的接口，不兼容的部分参考文档：
 https://www.tensorflow.org/install/migration
