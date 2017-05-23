@@ -65,7 +65,8 @@ tensorflow/                  // tf代码
 ├── tensorflow.bzl
 ├── workspace.bzl
 ├── examples/                    // 文档：示例模型
-├── g3doc/                       // 文档：官网页面的源文件
+├── g3doc/                       // 文档：已移到docs_src/
+├── docs_src/                    // 文档：官网页面的源文件
 ├── cc/                          // 接口文件：C++
 ├── python/                      // 接口文件：python                       
 ├── java/                        // 接口文件：java
