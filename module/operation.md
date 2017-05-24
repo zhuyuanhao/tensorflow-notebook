@@ -1,6 +1,6 @@
 Operation是最基本的执行单位，Op也被称为node。一个Op读取0个或多个Tensor，执行计算，返回0个或多个Tensor。
 
-使用`tf.placeholder(tf.float32)`添加一个占位Op，在运行Session时，指定实际的数据填充这个占位Op。
+使用`tf.placeholder(tf.float32)`添加一个占位Op，在运行Session时，指定实际的数据填充这个占位Op，如果placeholder没有被填充数据，则会报错。
 
 ```python
 a = tf.placeholder(tf.float32)

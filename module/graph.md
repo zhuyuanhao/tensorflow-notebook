@@ -19,7 +19,7 @@ with g.as_default():
 ```
 
 ## 名称空间(name scope)
-一个Graph中包含一系列的名称空间(name scope)，这些名称空间可以通过它们的名字形成嵌套关系。
+一个Graph中包含一系列的名称空间(name scope)，这些名称空间可以通过它们的名字形成嵌套关系。在TensorBoard显示的时候，根据名称空间分成不同的模块，同一名称空间的节点会折叠在一起。
 
 使用`tf[.Graph].name_scope(name/scope)`会返回一个上下文管理器。根据参数不同，将返回不同的上下文：
 

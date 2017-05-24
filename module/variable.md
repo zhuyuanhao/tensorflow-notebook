@@ -58,7 +58,7 @@ TensorFlow使用`variable_scope`机制提供在多处需要使用同一个Variab
 * `var = tf.get_variable(<name>, <shape>, <initializer>)`: 返回名称为name的变量，如果不存在则新建该变量并返回。在这里，相同的变量名并不会像tf.Variable()一样被自动重命名，而是会返回之前定义的变量。注意共享变量使用initializer函数初始化Variable，tf.Variable()使用Tensor初始化Variable。
 * `tf.variable_scope(<scope_name>/variable_scope_object, reuse=None)`: 返回某个变量域，可以使用字符串或其他变量域对象，在不同的scope中可以使用同样的变量名调用`tf.get_variable()`函数，它们在计算图中的变量名会变为`scope/name`。
 * `tf.get_variable_scope()`获取当前`variable_scope`。
-* 要想使用共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意默认情况下，子域将继承父域的reuse变量。
+* 要想使用共享变量，需要在进入变量域时使用`tf.variable_scope(<scope_name>, reuse=True)`，或者在变量域内调用`tf.get_variable_scope().reuse_variables()`函数。如果没有调用该函数而使用相同的变量，会报错ValueError。如果设置了reuse而变量不存在（不能reuse），也会报ValueError。注意默认情况下，子域将继承父域的reuse变量。
 
 ```python
 def conv_relu(input, kernel_shape, bias_shape):
@@ -107,7 +107,7 @@ with tf.variable_scope("foo", initializer=tf.constant_initializer(0.4)):
     ...
 ```
 ## 变量的存储
-使用`tf.train.Saver`可以为计算图的所有Variable或指定的部分Variable增加ave和restore操作。并且`tf.train.Saver`类提供了保存和读取并恢复Variable的方法。
+使用`tf.train.Saver`可以为计算图的所有Variable或指定的部分Variable增加save和restore操作。并且`tf.train.Saver`类提供了保存和读取并恢复Variable的方法。
 
 Saver保存变量的文件被称为Checkpoint文件，可以看作一个二进制的字典，使用`tf.Variable.name`作为Key，实际Tensor数据作Value。使用`tensorflow/tensorflow/python/tools/inspect_checkpoint.py`文件的`print_tensors_in_checkpoint_file()`函数可以查看二进制文件中的值。
 
