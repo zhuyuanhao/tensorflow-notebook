@@ -29,4 +29,6 @@
 
 * [linear\_regression](basic_linear_regression.md)
 * [mnist\_softmax](basic_mnist_softmax.md)
+* [mnist](mnist.md)
+  * [fully\_connected\_feed](mnist/fullyconnected-feed.md)
 

@@ -1,5 +1,6 @@
 Variable用来保存和更新参数，使用Tensor保存实际的数据。
 Variable必须显示初始化后才能被使用，可以被保存在磁盘中或从磁盘读取。
+
 相关API：
 * Variable：https://www.tensorflow.org/api_guides/python/state_ops
 * Saver：https://www.tensorflow.org/api_docs/python/tf/train/Saver
@@ -10,6 +11,7 @@ Variable必须显示初始化后才能被使用，可以被保存在磁盘中或
 biases = tf.Variable(tf.zeros([200]), name="biases")
 ```
 新建Variable时需要传入一个Tensor作为它的初始值，这个Tensor一般由其他Op得到，参考[常量、随机量Op](https://www.tensorflow.org/api_guides/python/constant_op)。
+
 `tf.Variable()`将在计算图中增加三个Op操作
 * 变量Op，用于保存Variable的值
 * 初始化Op，实际上是一个tf.assign操作
