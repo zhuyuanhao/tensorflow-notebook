@@ -5,3 +5,6 @@ train = optimizer.minimize(loss)
 for i in range(1000):
   sess.run(train, {x:x_train, y:y_train})
 ```
+
+
+通常训练进程先将训练的模型作为checkpoint文件保存，然后测试进程读取checkpoint文件，恢复模型再验证。
