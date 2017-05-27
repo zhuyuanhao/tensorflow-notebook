@@ -24,7 +24,7 @@ sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 ```
 
-## GPU使用
+## GPU内存
 默认情况下，能通过环境变量`CUDA_VISIBLE_DEVICES`被看到的所有GPU的内存都会被占用。TF允许动态分配需要的内存或者只占用固定比例的内存。
 
 * **动态分配需要的内存**：随着Session执行不断分配内存，且申请的内存不回收（加到TF的内存池中管理）。
