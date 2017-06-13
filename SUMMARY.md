@@ -6,6 +6,7 @@
 * [参考资料](Reference.md)
 * [安装](Install.md)
 * [代码结构](dai-ma-jie-gou.md)
+* [高性能设计](performance.md)
 
 ## 组件分析
 
