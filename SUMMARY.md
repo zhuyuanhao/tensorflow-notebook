@@ -21,6 +21,7 @@
 * [Session](module/session.md)
 * [读数据](module/readdata.md)
   * [Queue](module/readdata/queue.md)
+  * [TFRecords](module/readdata/tfrecords.md)
 * [训练模型](module/train.md)
 * [指定设备](module/device.md)
 * [TensorBoard](module/tensorboard.md)

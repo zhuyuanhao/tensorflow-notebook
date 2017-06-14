@@ -1,7 +1,7 @@
 读取数据共有3种方法:
-* 直接供给数据：使用其他方法获取数据后，使用Feeding机制提供给TF
-* 加载所有数据：小数据量时，一次读取所有数据保存在TF的constant或variable中
-* 从文件（队列）读取：在TF中使用队列读取文件名列表
+* **供给数据(Feeding)**： 在TensorFlow程序运行的每一步， 让Python代码来供给数据
+* **预加载数据**： 在TensorFlow图中定义常量或变量来保存所有数据(仅适用于数据量比较小的情况)
+* **从文件读取数据**： 在TensorFlow图的起始， 让一个输入管线从文件中读取数据
 
 参考资料：
 I/O Op：https://www.tensorflow.org/api_guides/python/io_ops
